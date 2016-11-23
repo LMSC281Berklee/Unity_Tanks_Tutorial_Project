@@ -67,7 +67,11 @@ public class TutorialInfo : MonoBehaviour
 	// continue to play, by ensuring the preference is set correctly, the overlay is not active, 
 	// and that the audio listener is enabled, and time scale is 1 (normal)
 	public void StartGame()
-	{		
+	{
+		//wjensen
+		//fades in 2nd layer
+		SoundManager.instance.FadeInLayers(1);
+
 		overlay.SetActive (false);
 		mainListener.enabled = true;
 		Time.timeScale = 1f;

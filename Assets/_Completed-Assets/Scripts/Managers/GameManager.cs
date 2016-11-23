@@ -7,6 +7,9 @@ namespace Complete
 {
     public class GameManager : MonoBehaviour
     {
+		//wjensen
+		public SoundManager soudnManager;
+
         public int m_NumRoundsToWin = 5;            // The number of rounds a single player has to win to win the game.
         public float m_StartDelay = 3f;             // The delay between the start of RoundStarting and RoundPlaying phases.
         public float m_EndDelay = 3f;               // The delay between the end of RoundPlaying and RoundEnding phases.
