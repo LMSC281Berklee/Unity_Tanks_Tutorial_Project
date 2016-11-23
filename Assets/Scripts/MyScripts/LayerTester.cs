@@ -8,7 +8,6 @@ public class LayerTester : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown(KeyCode.Alpha1))
 		{
-			Debug.Log("alpha1 pressed");
 			SoundManager.instance.FadeInLayers(0);
 		}
 		if (Input.GetKeyDown(KeyCode.Q))
