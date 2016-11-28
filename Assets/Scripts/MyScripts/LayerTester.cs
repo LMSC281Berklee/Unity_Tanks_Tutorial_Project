@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class LayerTester : MonoBehaviour {
-	int[] allLayers = new int[3] { 0, 1, 2 };
+	int[] allLayers = new int[] { 0, 1, 2, 3 };
 	
 	// Update is called once per frame
 	void Update () {
@@ -29,6 +29,14 @@ public class LayerTester : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.E))
 		{
 			SoundManager.instance.FadeOutLayers(2);
+		}
+		if (Input.GetKeyDown(KeyCode.Alpha4))
+		{
+			SoundManager.instance.FadeInLayers(3);
+		}
+		if (Input.GetKeyDown(KeyCode.R))
+		{
+			SoundManager.instance.FadeOutLayers(3);
 		}
 		if (Input.GetKeyDown(KeyCode.A))
 		{
