@@ -7,8 +7,6 @@ namespace Complete
 {
     public class GameManager : MonoBehaviour
     {
-		//wjensen
-		public SoundManager soudnManager;
 
         public int m_NumRoundsToWin = 5;            // The number of rounds a single player has to win to win the game.
         public float m_StartDelay = 3f;             // The delay between the start of RoundStarting and RoundPlaying phases.
@@ -86,6 +84,11 @@ namespace Complete
             // This code is not run until 'RoundEnding' has finished.  At which point, check if a game winner has been found.
             if (m_GameWinner != null)
             {
+				//wjensen
+				//reset music
+				int[] temp = new int[] { 1, 2, 3 };
+				SoundManager.instance.FadeOutLayers(temp);
+
                 // If there is a game winner, restart the level.
                 SceneManager.LoadScene (0);
             }
@@ -110,6 +113,9 @@ namespace Complete
             // Increment the round number and display text showing the players what round it is.
             m_RoundNumber++;
             m_MessageText.text = "ROUND " + m_RoundNumber;
+
+			//layer in music according to round number
+			SoundManager.instance.FadeInLayers(m_RoundNumber);
 
             // Wait for the specified length of time until yielding control back to the game loop.
             yield return m_StartWait;

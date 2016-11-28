@@ -8,6 +8,7 @@ public class SoundManager : MonoBehaviour {
 	public AudioSource [] musicLayers;
 	float fadeOutRate = 0.4f;
 	float fadeInRate = 0.2f;
+	float crossFadeRate = 0.3f;
 	Coroutine[] fadeInRoutines;
 	Coroutine[] fadeOutRoutines;
 
@@ -32,29 +33,13 @@ public class SoundManager : MonoBehaviour {
 		fadeOutRoutines = new Coroutine[musicLayers.Length];
 	}
 
-	//play single audioclip through sfx source
-	void PlaySingleSfx(AudioClip clip)
-	{
-		sfxSource.PlayOneShot(clip);
-	}
 
-	//plays random sound effect through sfx source
-	public void PlayRandomSfx(AudioClip[] clips, float minVol = 0.95f, float maxVol = 1.05f, float minPitch = 0.95f, float maxPitch = 1.05f)
-	{
-		//picks random index
-		int i = Random.Range(0, clips.Length);
-		//sets randVol between minVol and maxVol
-		float randVol = Random.Range(minVol, maxVol);
-		//sets randPitch between minpitch and maxpitch
-		float randPitch = Random.Range(minPitch, maxPitch);
-		//applies randVol
-		sfxSource.volume = randVol;
-		//applies randPitch
-		sfxSource.pitch = randPitch;
-		//plays randomized sfx
-		sfxSource.PlayOneShot(clips[i]);
-	}
 
+
+
+
+
+	//wjensen
 	//starts FadeIn coroutine and stores coroutine in parallel array fadeOutRoutines
 	public void FadeInLayers(int layerIndex) //if input param is int
 	{
@@ -62,9 +47,10 @@ public class SoundManager : MonoBehaviour {
 		if (fadeInRoutines[layerIndex] == null)
 		{
 			//starts fadeIn coroutine and stores coroutine in parallel array fadeInRoutines
-			fadeInRoutines[layerIndex] = StartCoroutine(FadeIn(layerIndex));
+			fadeInRoutines[layerIndex] = StartCoroutine(FadeIn(layerIndex,fadeInRate));
 		}
 	}
+	//wjensen
 	//starts fadeIn coroutine for each layer in int[] and stores coroutines in parallel array fadeInRoutines
 	public void FadeInLayers(int[] layers) //if input param is int array
 	{
@@ -75,20 +61,21 @@ public class SoundManager : MonoBehaviour {
 			if (fadeInRoutines[i] == null)
 			{
 				//starts fadeIn coroutine and stores coroutine in parallel array fadeInRoutines
-				fadeInRoutines[i] = StartCoroutine(FadeIn(i));
+				fadeInRoutines[i] = StartCoroutine(FadeIn(i,fadeInRate));
 			}
 		}
 	}
-
+	//wjensen
 	//starts FadeOut coroutine and stores coroutine in parallel array fadeOutRoutines
 	public void FadeOutLayers(int layerIndex) //if input param is int
 	{
 		//checks whether or not fadeOutRoutine is already running
 		if (fadeOutRoutines[layerIndex] == null)
 		{
-			fadeOutRoutines[layerIndex] = StartCoroutine(FadeOut(layerIndex));
+			fadeOutRoutines[layerIndex] = StartCoroutine(FadeOut(layerIndex, fadeOutRate));
 		}
 	}
+	//wjensen
 	//starts FadeOut coroutine foreach layer in int[] and stores coroutines in parallel array fadeOutRoutines
 	public void FadeOutLayers(int[] layers) //if input param is int array
 	{
@@ -99,13 +86,28 @@ public class SoundManager : MonoBehaviour {
 			if (fadeOutRoutines[i] == null)
 			{
 				//starts fadeOut coroutine and stores coroutine in parallel array fadeOutRoutines
-				fadeOutRoutines[i] = StartCoroutine(FadeOut(i));
+				fadeOutRoutines[i] = StartCoroutine(FadeOut(i,fadeOutRate));
 			}
 		}
 	}
-
+	//wjensen
+	//crossfades inputed layers at crossFadeRate
+	public void CrossFadeLayers(int layerOut, int layerIn)
+	{
+		//runs only if layerIn is not currently fading in, prevents stacking of fades
+		if (fadeOutRoutines[layerIn] == null)
+		{
+			fadeInRoutines[layerIn] = StartCoroutine(FadeIn(layerIn, crossFadeRate));
+		}
+		//runs only if layerOut is not currently fading out, prevents stacking of fades
+		if (fadeOutRoutines[layerOut] == null)
+		{
+			fadeOutRoutines[layerOut] = StartCoroutine(FadeOut(layerOut, crossFadeRate));
+        }
+	}
+	//wjensen
 	//fade in layer
-	IEnumerator FadeIn(int layerIndex) //if input param is int
+	IEnumerator FadeIn(int layerIndex, float fadeRate) //if input param is int
 	{
 		//initializes layer
 		AudioSource layer = musicLayers[layerIndex];
@@ -117,19 +119,18 @@ public class SoundManager : MonoBehaviour {
 			//sets parallel fadeOutRoutines to null indicating coroutine has stopped
 			fadeOutRoutines[layerIndex] = null;
 		}
-		//execute while layer volume is less than 1
+		//increments layer volume until layer volume is at full volume
 		while (layer.volume < 1)
 		{
 			float layerVolume = layer.volume;
 			//if predicted layer volume is greater than 1 set to 1
-			if (layer.volume + fadeInRate * Time.deltaTime >= 1)
+			if (layer.volume + fadeRate * Time.deltaTime >= 1)
 			{
 				layer.volume = 1;
-				//yield break;
 			}
 			else //increase layer.volume
 			{
-				layer.volume += fadeInRate * Time.deltaTime;
+				layer.volume += fadeRate * Time.deltaTime;
 			}
 			yield return null;
 		}
@@ -137,9 +138,9 @@ public class SoundManager : MonoBehaviour {
 		fadeInRoutines[layerIndex] = null;
 		yield break;
 	}
-
+	//wjensen
 	//fade out layer
-	IEnumerator FadeOut(int layerIndex) //if input param is int
+	IEnumerator FadeOut(int layerIndex, float fadeRate) //if input param is int
 	{
 		//initializes layer
 		AudioSource layer = musicLayers[layerIndex];
@@ -152,18 +153,17 @@ public class SoundManager : MonoBehaviour {
 			fadeInRoutines[layerIndex] = null;
 		}
 		//executes while layer volume is greater than 0
-		while (musicLayers[layerIndex].volume > 0)
+		while (layer.volume > 0)
 		{
 			float layerVolume = layer.volume;
 			//if predicted layer volume is less than 0 set to 0
-			if (layer.volume - fadeOutRate * Time.deltaTime <= 0)
+			if (layer.volume - fadeRate * Time.deltaTime <= 0)
 			{
 				layer.volume = 0;
-				//yield break;
 			}
 			else //decrease layer.volume
 			{
-				layer.volume -= fadeOutRate * Time.deltaTime;
+				layer.volume -= fadeRate * Time.deltaTime;
 			}
 			yield return null;
 		}

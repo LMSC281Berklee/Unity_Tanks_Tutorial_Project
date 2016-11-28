@@ -56,6 +56,11 @@ public class TutorialInfo : MonoBehaviour
 		Time.timeScale = 0f;
 		mainListener.enabled = true;
 		overlay.SetActive (true);
+
+		//set music to starting config
+		int[] temp = new int[] { 1, 2, 3 };
+		SoundManager.instance.FadeOutLayers(temp);
+
 	}
 
 	// open the stored URL for this content in a web browser
@@ -68,9 +73,9 @@ public class TutorialInfo : MonoBehaviour
 	// and that the audio listener is enabled, and time scale is 1 (normal)
 	public void StartGame()
 	{
-		//wjensen
-		//fades in 2nd layer
-		SoundManager.instance.FadeInLayers(1);
+		////wjensen
+		////fades in layer at game start
+		//SoundManager.instance.FadeInLayers(1);
 
 		overlay.SetActive (false);
 		mainListener.enabled = true;
