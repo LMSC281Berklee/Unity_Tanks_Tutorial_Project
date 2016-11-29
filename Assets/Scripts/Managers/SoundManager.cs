@@ -4,15 +4,12 @@ using System.Collections;
 
 public class SoundManager : MonoBehaviour {
 
-	public GameObject GameManagerAudio;
+	public GameObject GameManagerMusic; //Create Game Object reference - Conrad Robertson
 
 	// Use this for initialization
 	void Start () {
 
-		//GameManagerAudio = GameObject.Find ("GameManager");
-		//GetComponent<AudioSource> ().mute = true; //Initialize the game by having the music muted - Conrad Robertson
-
-
+		//GameManagerMusic = GameObject.Find ("GameManager"); //Define what object GameManagerMusic is - Conrad Robertson
 
 	}
 	
@@ -22,9 +19,11 @@ public class SoundManager : MonoBehaviour {
 	}
 
 	//Conrad Robertson
-	public static void PlayMusic (GameObject GameManagerAudio){
+	public static void PlayMusic (GameObject GameManagerMusic){
 
-		GameManagerAudio.GetComponent<AudioSource> ().mute = true; //Using the mute true/false to quickly see if function is working as hoped - Conrad Robertson
+		//GetComponent<AudioSource> ().mute = false; //Simple test code to quickly see if function is working as hoped (Game starts with mute = true, testing if it will turn false on play) - Conrad Robertson
+
+		GameManagerMusic.GetComponent<AudioSource> ().mute = false;
 
 	}
 }

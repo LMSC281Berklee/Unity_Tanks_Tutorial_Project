@@ -604,7 +604,7 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   Priority: 128
   DopplerLevel: 1
@@ -612,7 +612,7 @@ AudioSource:
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
-  BypassEffects: 0
+  BypassEffects: 1
   BypassListenerEffects: 0
   BypassReverbZones: 0
   rolloffCustomCurve:
@@ -675,24 +675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3a8252a1e4ac4cc19248590021d6333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameManagerAudio: {fileID: 0}
---- !u!1 &1306621265 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000012365145786, guid: c74f553b118f94bfcbe70a5cdcc48114,
-    type: 2}
-  m_PrefabInternal: {fileID: 951612315}
---- !u!114 &1306621271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1306621265}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3a8252a1e4ac4cc19248590021d6333, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GameManagerAudio: {fileID: 0}
+  GameManagerMusic: {fileID: 1304999364}
 --- !u!1 &1391056259
 GameObject:
   m_ObjectHideFlags: 0

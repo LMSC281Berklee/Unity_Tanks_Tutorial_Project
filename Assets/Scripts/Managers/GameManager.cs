@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
         StartCoroutine(GameLoop());
 
-		//SoundManager.PlayMusic (); - Possible spot for function; testing if function works on pressing play
+		SoundManager.PlayMusic (this.gameObject);
 
     }
 
