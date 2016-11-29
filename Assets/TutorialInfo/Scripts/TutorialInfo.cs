@@ -45,6 +45,9 @@ public class TutorialInfo : MonoBehaviour
 		else 
 		{
 			StartGame ();
+
+//			SoundManager.PlayMusic() - Another possible spot for function. See if music will play once we actually start the game
+
 		}
 
 	}
