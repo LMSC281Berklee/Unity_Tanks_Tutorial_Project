@@ -41,16 +41,7 @@ public class SoundManager : MonoBehaviour {
     //Lead by wjensen
     //Fall 2016
     //Used to play single sound clips.
-    public void PlaySingle(AudioClip clip)
-    {
-        //Set the clip of our efxSource audio source to the clip passed in as a parameter.
-        sfxSource.clip = clip;
-
-        //Play the clip.
-        sfxSource.Play();
-    }
-
-
+   
     //RandomizeSfx chooses randomly between various audio clips and slightly changes their pitch.
     public void RandomizeSfx(params AudioClip[] clips)
     {
@@ -210,8 +201,7 @@ public void FadeInLayers(int layerIndex) //if input param is int
 	//Cclark
 	public void PlaySingle (AudioClip clip)
 	{
-		sfxSource.clip = clip;
-		sfxSource.Play ();
+		sfxSource.PlayOneShot (clip);
 
 	}
 
