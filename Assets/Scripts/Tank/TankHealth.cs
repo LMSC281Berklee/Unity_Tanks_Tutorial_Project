@@ -9,7 +9,7 @@ public class TankHealth : MonoBehaviour
     public Color m_FullHealthColor = Color.green;  
     public Color m_ZeroHealthColor = Color.red;    
     public GameObject m_ExplosionPrefab;
-    
+	public AudioClip deathSound;
     /*
     private AudioSource m_ExplosionAudio;          
     private ParticleSystem m_ExplosionParticles;   
@@ -49,6 +49,6 @@ public class TankHealth : MonoBehaviour
 
     private void OnDeath()
     {
-        // Play the effects for the death of the tank and deactivate it.
+		SoundManager.instance.PlaySingle (deathSound);
     }
 }
