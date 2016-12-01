@@ -675,6 +675,8 @@ MonoBehaviour:
   - {fileID: 1053385607}
   - {fileID: 1053385606}
   - {fileID: 1053385613}
+  lowPitchRange: 0.95
+  highPitchRange: 1.07
 --- !u!82 &1053385610
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1078,7 +1080,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -1100,7 +1102,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!1 &1391056259
 GameObject:
   m_ObjectHideFlags: 0
