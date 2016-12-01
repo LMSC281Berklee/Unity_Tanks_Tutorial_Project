@@ -206,4 +206,13 @@ public void FadeInLayers(int layerIndex) //if input param is int
 		fadeOutRoutines[layerIndex] = null;
 		yield break;
 	}
+
+	//Cclark
+	public void PlaySingle (AudioClip clip)
+	{
+		sfxSource.clip = clip;
+		sfxSource.Play ();
+
+	}
+
 }
