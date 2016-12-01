@@ -1,10 +1,16 @@
 fileFormatVersion: 2
 guid: 06b38fa3f5188f6419ab17bc1669c18c
-timeCreated: 1431010538
-licenseType: Store
+timeCreated: 1480403749
+licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - m_Shell: {instanceID: 0}
+  - m_FireTransform: {instanceID: 0}
+  - m_AimSlider: {instanceID: 0}
+  - m_ShootingAudio: {instanceID: 0}
+  - m_ChargingClip: {fileID: 8300000, guid: c17f124fcdc0f5446a72f793898bd74b, type: 3}
+  - m_FireClip: {fileID: 8300000, guid: 672a9941361ad494a99fba36759eca80, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
