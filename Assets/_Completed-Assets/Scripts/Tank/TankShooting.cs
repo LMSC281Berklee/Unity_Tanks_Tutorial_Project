@@ -20,7 +20,7 @@ namespace Complete
         private string m_FireButton;                // The input axis that is used for launching shells.
         private float m_CurrentLaunchForce;         // The force that will be given to the shell when the fire button is released.
         private float m_ChargeSpeed;                // How fast the launch force increases, based on the max charge time.
-        private bool m_Fired;                       // Whether or not the shell has been launched with this button press.
+        public bool m_Fired;                       // Whether or not the shell has been launched with this button press.
 
 
         private void OnEnable()

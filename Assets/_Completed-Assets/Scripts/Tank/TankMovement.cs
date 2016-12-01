@@ -19,11 +19,14 @@ namespace Complete
         private float m_MovementInputValue;         // The current value of the movement input.
         private float m_TurnInputValue;             // The current value of the turn input.
         private float m_OriginalPitch;              // The pitch of the audio source at the start of the scene.
-
+		public GameObject GameManagerMusic;
+		public GameObject TankShooting;
 
         private void Awake ()
         {
             m_Rigidbody = GetComponent<Rigidbody> ();
+			GameManagerMusic = GameObject.Find ("GameManager");
+			TankShooting = GameObject.Find ("CompleteTank");
         }
 
 
@@ -62,11 +65,12 @@ namespace Complete
             m_MovementInputValue = Input.GetAxis (m_MovementAxisName);
             m_TurnInputValue = Input.GetAxis (m_TurnAxisName);
 
-            EngineAudio ();
+			//Bens function for tank movement sound
+			GameManagerMusic.GetComponent<SoundManager>().TankMovementSound ();
         }
 
 
-        private void EngineAudio ()
+ /*       private void EngineAudio ()
         {
             // If there is no input (the tank is stationary)...
             if (Mathf.Abs (m_MovementInputValue) < 0.1f && Mathf.Abs (m_TurnInputValue) < 0.1f)
@@ -91,7 +95,7 @@ namespace Complete
                     m_MovementAudio.Play();
                 }
             }
-        }
+        }*/
 
 
         private void FixedUpdate ()
