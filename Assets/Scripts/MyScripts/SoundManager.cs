@@ -171,4 +171,13 @@ public class SoundManager : MonoBehaviour {
 		fadeOutRoutines[layerIndex] = null;
 		yield break;
 	}
+
+	//Cclark
+	public void PlaySingle (AudioClip clip)
+	{
+		sfxSource.clip = clip;
+		sfxSource.Play ();
+
+	}
+
 }
