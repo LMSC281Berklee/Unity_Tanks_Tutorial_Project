@@ -42,8 +42,12 @@ public class SoundManager : MonoBehaviour {
     //Lead by wjensen
     //Fall 2016
     //Used to play single sound clips.
+<<<<<<< HEAD
 
 
+=======
+   
+>>>>>>> origin/Team-Aqua-Branch
     //RandomizeSfx chooses randomly between various audio clips and slightly changes their pitch.
     public void RandomizeSfx(AudioClip[] clips, bool isDriving = false, float lowPitchRange = .95f, float highPitchRange = 1.07f)
     {
@@ -237,8 +241,13 @@ public void FadeInLayers(int layerIndex) //if input param is int
 	//Cclark
 	public void PlaySingle (AudioClip clip)
 	{
+<<<<<<< HEAD
 		//sfxSource.clip = clip;
 		//sfxSource.Play();
 		sfxSource.PlayOneShot(clip);
+=======
+		sfxSource.PlayOneShot (clip);
+
+>>>>>>> origin/Team-Aqua-Branch
 	}
 }
