@@ -40,7 +40,6 @@ namespace Complete
             m_ChargeSpeed = (m_MaxLaunchForce - m_MinLaunchForce) / m_MaxChargeTime;
         }
 
-
         private void Update ()
         {
             // The slider should have a default value of the minimum launch force.
@@ -60,12 +59,14 @@ namespace Complete
                 m_Fired = false;
                 m_CurrentLaunchForce = m_MinLaunchForce;
 
-                // Change the clip to the charging clip and start it playing.
-                m_ShootingAudio.clip = m_ChargingClip;
-                m_ShootingAudio.Play ();
-            }
-            // Otherwise, if the fire button is being held and the shell hasn't been launched yet...
-            else if (Input.GetButton (m_FireButton) && !m_Fired)
+				//// Change the clip to the charging clip and start it playing.
+				//m_ShootingAudio.clip = m_ChargingClip;
+				//m_ShootingAudio.Play();
+
+				SoundManager.instance.PlaySingle(m_ChargingClip);
+			}
+			// Otherwise, if the fire button is being held and the shell hasn't been launched yet...
+			else if (Input.GetButton (m_FireButton) && !m_Fired)
             {
                 // Increment the launch force and update the slider.
                 m_CurrentLaunchForce += m_ChargeSpeed * Time.deltaTime;
@@ -91,11 +92,12 @@ namespace Complete
                 Instantiate (m_Shell, m_FireTransform.position, m_FireTransform.rotation) as Rigidbody;
 
             // Set the shell's velocity to the launch force in the fire position's forward direction.
-            shellInstance.velocity = m_CurrentLaunchForce * m_FireTransform.forward; 
+            shellInstance.velocity = m_CurrentLaunchForce * m_FireTransform.forward;
 
-            // Change the clip to the firing clip and play it.
-            m_ShootingAudio.clip = m_FireClip;
-            m_ShootingAudio.Play ();
+			//// Change the clip to the firing clip and play it.
+			//m_ShootingAudio.clip = m_FireClip;
+			//m_ShootingAudio.Play ();
+			SoundManager.instance.PlaySingle(m_FireClip);
 
             // Reset the launch force.  This is a precaution in case of missing button events.
             m_CurrentLaunchForce = m_MinLaunchForce;

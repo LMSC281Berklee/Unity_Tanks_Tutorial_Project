@@ -5,6 +5,7 @@ public class SoundManager : MonoBehaviour {
 
 	public static SoundManager instance = null;
 	public AudioSource sfxSource;
+	public AudioSource drivingSource;
 	public AudioSource [] musicLayers;
 	float fadeOutRate = 0.4f;
 	float fadeInRate = 0.2f;
@@ -12,8 +13,8 @@ public class SoundManager : MonoBehaviour {
 	Coroutine[] fadeInRoutines;
 	Coroutine[] fadeOutRoutines;
     //Variables for sfx randomization
-    public float lowPitchRange = .95f;
-    public float highPitchRange = 1.07f;
+    //public float lowPitchRange = .95f;
+    //public float highPitchRange = 1.07f;
 
 	// Use this for initialization
 	void Awake () {
@@ -41,19 +42,23 @@ public class SoundManager : MonoBehaviour {
     //Lead by wjensen
     //Fall 2016
     //Used to play single sound clips.
-    public void PlaySingle(AudioClip clip)
-    {
-        //Set the clip of our efxSource audio source to the clip passed in as a parameter.
-        sfxSource.clip = clip;
-
-        //Play the clip.
-        sfxSource.Play();
-    }
 
 
     //RandomizeSfx chooses randomly between various audio clips and slightly changes their pitch.
-    public void RandomizeSfx(params AudioClip[] clips)
+    public void RandomizeSfx(AudioClip[] clips, bool isDriving = false, float lowPitchRange = .95f, float highPitchRange = 1.07f)
     {
+		AudioSource source = null;
+
+		if (isDriving == true)
+		{
+			source = drivingSource;
+		}
+		else
+		{
+			source = sfxSource;
+		}
+
+
         //Generate a random number between 0 and the length of our array of clips passed in.
         int randomIndex = Random.Range(0, clips.Length);
 
@@ -61,18 +66,40 @@ public class SoundManager : MonoBehaviour {
         float randomPitch = Random.Range(lowPitchRange, highPitchRange);
 
         //Set the pitch of the audio source to the randomly chosen pitch.
-        sfxSource.pitch = randomPitch;
+        source.pitch = randomPitch;
 
         //Set the clip to the clip at our randomly chosen index.
-        sfxSource.clip = clips[randomIndex];
+        source.clip = clips[randomIndex];
 
         //Play the clip.
-        sfxSource.Play();
+        source.Play();
     }
 
+	public void RandomizeSfx(AudioClip clip, bool isDriving = false, float lowPitchRange = .95f, float highPitchRange = 1.07f)
+	{
+		AudioSource source = null;
 
+		if (isDriving == true)
+		{
+			source = drivingSource;
+		}
+		else
+		{
+			source = sfxSource;
+		}
 
+		//Choose a random pitch to play back our clip at between our high and low pitch ranges.
+		float randomPitch = Random.Range(lowPitchRange, highPitchRange);
 
+		//Set the pitch of the audio source to the randomly chosen pitch.
+		source.pitch = randomPitch;
+
+		//Set the clip to the clip at our randomly chosen index.
+		source.clip = clip;
+
+		//Play the clip.
+		source.Play();
+	}
 
 //wjensen
 //starts FadeIn coroutine and stores coroutine in parallel array fadeOutRoutines
@@ -210,9 +237,8 @@ public void FadeInLayers(int layerIndex) //if input param is int
 	//Cclark
 	public void PlaySingle (AudioClip clip)
 	{
-		sfxSource.clip = clip;
-		sfxSource.Play ();
-
+		//sfxSource.clip = clip;
+		//sfxSource.Play();
+		sfxSource.PlayOneShot(clip);
 	}
-
 }

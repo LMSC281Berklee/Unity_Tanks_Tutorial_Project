@@ -651,7 +651,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -726,7 +726,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -1026,7 +1026,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 126470}
-  serializedVersion: 4
+  serializedVersion: 2
   lengthInSec: 0.75
   startDelay:
     scalar: 0
@@ -1064,13 +1064,12 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
+  randomSeed: 0
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 0
-  autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 0
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -2755,7 +2754,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 169526}
-  serializedVersion: 4
+  serializedVersion: 2
   lengthInSec: 0.75
   startDelay:
     scalar: 0
@@ -2793,13 +2792,12 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
+  randomSeed: 0
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 0
-  autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 0
   InitialModule:
     serializedVersion: 2
     enabled: 1

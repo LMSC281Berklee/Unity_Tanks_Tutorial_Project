@@ -74,22 +74,24 @@ namespace Complete
                 // ... and if the audio source is currently playing the driving clip...
                 if (m_MovementAudio.clip == m_EngineDriving)
                 {
-                    // ... change the clip to idling and play it.
-                    m_MovementAudio.clip = m_EngineIdling;
-                    m_MovementAudio.pitch = Random.Range (m_OriginalPitch - m_PitchRange, m_OriginalPitch + m_PitchRange);
-                    m_MovementAudio.Play ();
-                }
+					// ... change the clip to idling and play it.
+					m_MovementAudio.clip = m_EngineIdling;
+					//m_MovementAudio.pitch = Random.Range(m_OriginalPitch - m_PitchRange, m_OriginalPitch + m_PitchRange);
+					//m_MovementAudio.Play();
+					SoundManager.instance.RandomizeSfx(m_EngineIdling, true, m_OriginalPitch - m_PitchRange, m_OriginalPitch + m_PitchRange);
+				}
             }
             else
             {
                 // Otherwise if the tank is moving and if the idling clip is currently playing...
                 if (m_MovementAudio.clip == m_EngineIdling)
                 {
-                    // ... change the clip to driving and play.
-                    m_MovementAudio.clip = m_EngineDriving;
-                    m_MovementAudio.pitch = Random.Range(m_OriginalPitch - m_PitchRange, m_OriginalPitch + m_PitchRange);
-                    m_MovementAudio.Play();
-                }
+					// ... change the clip to driving and play.
+					m_MovementAudio.clip = m_EngineDriving;
+					//m_MovementAudio.pitch = Random.Range(m_OriginalPitch - m_PitchRange, m_OriginalPitch + m_PitchRange);
+					//m_MovementAudio.Play();
+					SoundManager.instance.RandomizeSfx(m_EngineDriving, true, m_OriginalPitch - m_PitchRange, m_OriginalPitch + m_PitchRange);
+				}
             }
         }
 
